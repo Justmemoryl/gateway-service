@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: gateway-service
+    # MySQL
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://118.24.20.210:3306/justmemoryl?autoReconnect=true
+    username: root
+    password: lp243832
+
+  # jpa
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        # 使用hibernate自定义表名/字段名
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: false
+
+server:
+  port: 8005
+
+
+# 访问/it/** 直接重定向到http://www.ityouknow.com/**
+# zuul:
+#   routes:
+#       baidu:
+#         path: /it/**
+#         url: http://www.baidu.com/
+#zuul:
+#  routes:
+#    api-a:
+#      path: /producer/**
+#      serviceId: jml-cloud-eureka-producer
+
+# 服务注册中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://118.24.20.210:8001/eureka/,http://118.24.20.210:8002/eureka/
+
+# logback setting
+logging:
+  config: classpath:logback-spring.xml
+  # path: /home/jml/logs/
+  # path: D:\\Workspace\\Justmemoryl\\logs\\
+  level:
+    root: info
